@@ -1,5 +1,7 @@
 const http = require('http');
 const fs = require('fs');
+const my_module = require('./modz');
+my_module.greet();
 const server = http.createServer(function (request, response){
     console.log('client request URL: ', request.url);
     
