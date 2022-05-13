@@ -4,13 +4,14 @@ const static_content = require('./static');
 
 server = http.createServer(function (request, response) {
     // <<<<<<<<<>>>>>>>>>>>>>>>>>> build static.js to handle all the code below 
-    static_content(request, response);
+    // static_content(request, response);
 
   response.writeHead(200, {'Content-type': 'text/html'});
   console.log('Request ----------->', request.url);
 
   if(request.url === '/'){
     fs.readFile('views/index.html', 'utf8', function (errors, contents) {
+        response.console.log(request)
       response.write(contents);
       response.end();
     });
