@@ -18,6 +18,20 @@ app.get('/car/new', function(request,response){
     response.render('form');
 });
 
+app.get('/cat/*', function(request,response){
+    var users_array = [
+        {name: "Michael", email: "michael@codingdojo.com"}, 
+        {name: "Jay", email: "jay@codingdojo.com"}, 
+        {name: "Brendan", email: "brendan@codingdojo.com"}, 
+        {name: "Andrew", email: "andrew@codingdojo.com"}
+    ];
+    const img_name = request.url.split('/').pop()
+    
+    response.render('details', { users: users_array, name: img_name })
+});
+
+
 app.listen(8000, function() {
 console.log("listening on port 8000");
 })
+

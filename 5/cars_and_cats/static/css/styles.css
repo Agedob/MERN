@@ -9,5 +9,11 @@
 }
 #container {
     padding: 1rem;
-    
+}
+img{
+    width: 30em;
+    margin: 1em;
+}
+img:hover{
+    cursor: pointer;
 }
