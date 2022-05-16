@@ -12,13 +12,22 @@ app.set('view engine', 'ejs');
 app.get('/', function(req, res) {
     res.render("index");
    })
-   
+
 // route to process new user form data:
 app.post('/users', function (req, res){
     console.log("POST DATA \n\n", req.body)
     //code to add user to db goes here!
     // redirect the user back to the root route.  
     res.redirect('/')
+});
+
+app.post('/users', function (req, res){
+    // set the name property of session.  
+    req.session.name = req.body.name;
+    console.log(req.session.name);
+    //code to add user to db goes here!
+    // redirect the user back to the root route. 
+    res.redirect('/');
 });
 
 app.get("/users/:id", function (req, res){
