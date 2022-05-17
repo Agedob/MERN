@@ -8,7 +8,7 @@ var counter = 0;
     
 io.on('connection', function (socket) { //2
   
-  socket.emit('greeting', { msg: 'SLDKJF:SLDKFJ Greetings, from server Node, brought to you by Sockets! -Server' }); //3
+  socket.emit('greeting', { msg: `SLDKJF:SLDKFJ Greetings, from server Node, brought to you by Sockets! -Server ID:${socket.id}`}); //3
   socket.on('thankyou',  (data) => { //7
     console.log(data.msg); //8 (note: this log will be on your server's terminal)
   });
