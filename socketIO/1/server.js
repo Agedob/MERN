@@ -6,7 +6,7 @@ const io = require('socket.io')(server);
 // server.listen(80);
 var counter = 0;
     
-io.on('connection', function (socket) { //2
+io.on('connection', (socket) => { //2
   
   socket.emit('greeting', { msg: `Greetings, from server Node, brought to you by Sockets! -Server ID:${socket.id}`}); //3
   socket.on('thankyou',  (data) => { //7
