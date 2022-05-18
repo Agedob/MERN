@@ -1,7 +1,7 @@
 # Survey with Socket.IO
 1. Form doesn't submit
-2. Server emits fomr info to clinet 
-3. server send random number 1-1000
+2. Server emits form info to clinet 
+3. server send random number 1-1000 with form info 
 
 
 Before you start coding this, first outline or write down the steps of accomplishing this. Do this for EVERY nodeJS exercise as doing these steps will help you build your app easily.

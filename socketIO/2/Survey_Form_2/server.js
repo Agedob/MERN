@@ -6,9 +6,8 @@ const io = require('socket.io')(server);
 
 // user joined 
 io.on('connection', function (socket) {
-    var lucky = Math.ceil(Math.random()*1000)
-
-    socket.emit('someone_joined', { greeting:`Thank you for joinging ${socket.id} this will be your id number.`, id: socket.id, lucky_number: lucky});
+    
+    socket.emit('someone_joined', { greeting:`Thank you for joinging ${socket.id} this will be your id number.`, id: socket.id});
 
     // message form client that joined 
     socket.on('client_sent', (from_client) => {
@@ -25,8 +24,11 @@ io.on('connection', function (socket) {
         console.log(socket.id, ' Left the server')
     })
 
+    // mesage from form
     socket.on('form_sent_from_client', (info) => {
         console.log(info);
+        const lucky = Math.ceil(Math.random()*1000)
+        socket.emit('updated_message', `Your lucky number is ${lucky}, you set name as:${info.name} and email as:${info.email}`)
     })
 
 });
