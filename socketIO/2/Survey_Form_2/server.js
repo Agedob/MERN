@@ -24,4 +24,9 @@ io.on('connection', function (socket) {
         socket.broadcast.emit('i_left_chat', `${socket.id} left the chat`); 
         console.log(socket.id, ' Left the server')
     })
+
+    socket.on('form_sent_from_client', (info) => {
+        console.log(info);
+    })
+
 });

@@ -19,9 +19,14 @@ $(document).ready(()=> {
     })
 
     $('form').submit((e) =>{
-        e.preventDefault()
         console.log('stopped form')
+        // console.log(e.target.elements.name.value);
+        // console.log(e.target.elements.email.value);
+        const name = $('input[name="name"').val();
+        const email = $('input[name="email"').val();
         console.log($('input[name="name"').val())
         console.log($('input[name="email"').val())
+        socket.emit('form_sent_from_client', {name:name, email:email })
+       e.preventDefault()
     })
 })
