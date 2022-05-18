@@ -4,8 +4,7 @@
   "description": "Use on website!!!",
   "main": "server.js",
   "scripts": {
-    "test": "nodemon server.js",
-    "start": "node server.js"
+    "start": "nodemon server.js"
   },
   "author": "MЯ.ŠΓΣΣÞÿ",
   "license": "UNLICENSED",
