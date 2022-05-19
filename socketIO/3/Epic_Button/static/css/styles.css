@@ -9,5 +9,20 @@
 }
 #container {
     padding: 1rem;
-    
+}
+#btn_holder{
+    display: flex;
+}
+button{
+    padding: .5em;
+    border-radius: .5em;
+}
+#counter{
+    text-align: center;
+}
+#plus_1{
+    background-color: red;
+}
+#reset{
+    background-color: green;
 }
