@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-var bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const mongo_connect_info = require('./mongoPass')
@@ -40,6 +40,9 @@ app.post('/users', function (req,res) {
         
     res.redirect('/');
     })
+
+
+
 
 app.listen(7173, () => {
     console.log("Listening on port 7173")
