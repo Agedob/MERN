@@ -13,7 +13,8 @@ app.get('/', function(req, res) {
     res.render("index");
    })
 
-app.post('/users', function (req, res){
+// post data
+app.post('/users', (req, res) =>{
     result_data.push(req.body)
     res.redirect('/result')
 });

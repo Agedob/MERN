@@ -17,9 +17,15 @@
 
         <form action='/users' method='post'>
             Name: <input type='text' name='name'>
-            Age: <input type='text' name='email'>
+            Age: <input type='text' name='age'>
             <input type='submit' value='Create User'>
         </form>
+
+        <% for (var x in users) { %>
+            <h3>Name: <%= users[x].name %></h3>
+            <h3>Age: <%= users[x].age %></h3>
+            <hr>
+        <% } %>
 
         </div>
 
