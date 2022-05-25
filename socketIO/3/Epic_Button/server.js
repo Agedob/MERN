@@ -10,7 +10,8 @@ var the_number = 0;
 io.on('connection', function (socket) {
     
     socket.emit('joined_server', { greeting:`Thank you for joinging ${socket.id} this will be your id number.`, id: socket.id});
-    socket.emit('refresh_number', the_number);
+    
+    // socket.emit('refresh_number', the_number);
 
     socket.on('plus-1', () => {
         the_number +=1;
@@ -18,7 +19,7 @@ io.on('connection', function (socket) {
             io.emit('refresh_number', the_number);
         }
         else if (the_number >= 21){
-            io.emit('half_way', {msg: `Made it halfway there.`, count: the_number});
+            io.emit('half_way', {msg: `Made it halfway.`, count: the_number});
         }
     })
     socket.on('reset', () => {
