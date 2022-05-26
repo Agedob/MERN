@@ -12,9 +12,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.set('views', __dirname + '/static/views');
 app.set('view engine', 'ejs'); 
 
-const mongooseRouter = require('./routes/mongooses');
+const mongooseRouter = require('./routes/animal');
+// const { json } = require('body-parser');
 
-app.use('/mongooses', mongooseRouter)
+app.use('/animal', mongooseRouter)
 
 
  app.listen(PORT, () => { ;
