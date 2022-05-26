@@ -29,12 +29,14 @@ router.post('/new', async (req,res) => {
         name : req.body.name,
         age : req.body.age,
     });
+    console.log(req.body);
+    console.log(animal);
 
     try{
         const newAnimal = await animal.save();
         res.status(201).json(newAnimal);
     } catch (err) {
-        res.status(400).json( err.message );
+        res.status(400).json( { message : err.message });
     }
 });
 

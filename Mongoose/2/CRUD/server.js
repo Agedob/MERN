@@ -11,6 +11,7 @@ app.use(express.static(__dirname + '/static'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('views', __dirname + '/static/views');
 app.set('view engine', 'ejs'); 
+app.use(express.json())
 
 const mongooseRouter = require('./routes/animal');
 // const { json } = require('body-parser');
