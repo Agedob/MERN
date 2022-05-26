@@ -10,3 +10,10 @@ GET '/mongooses/edit/:id' Should show a form to edit an existing mongoose.
 POST '/mongooses/:id' Should be the action attribute for the form in the above route (GET '/mongooses/edit/:id').
 POST '/mongooses/destroy/:id' Should delete the mongoose from the database by ID.
 Remember these routes are just examples, avoid using mongooses for your dashboard if you can!
+
+
+# SIDE NOTES
+
+1. async await
+2. REST
+3. ???
