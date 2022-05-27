@@ -14,8 +14,8 @@ router.get('/', async (req,res) =>{
 });
 
 // GET '/mongooses/:id' Displays information about one mongoose.
-router.get('/:id', (req,res) => {
-    res.send(`Id = ${req.params.id}`)
+router.get('/:id', getAnimal, (req,res) => {
+    res.send(res.somethingelse.name)
 });
 
 // GET '/mongooses/new' Displays a form for making a new mongoose.
@@ -54,5 +54,21 @@ router.post(':id', (req,res) => {
 router.post('destroy/:id', (req,res) => {
 
 });
+
+// "middle-ware" find by id 
+async function getAnimal(req, res, next) {
+    let animalbyid
+    try{
+        animalbyid = await Animal.findById(req.params.id);
+        if(animalbyid == null) {
+            return res.status(404).json({message: "Animal does not exsist"});
+        }
+    } catch (err) {
+        return res.status(500).json({message:err.message});
+    }
+    console.log(animalbyid);
+    res.somethingelse = animalbyid
+    next()
+}
 
 module.exports  = router;
