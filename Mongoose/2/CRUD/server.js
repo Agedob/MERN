@@ -15,9 +15,10 @@ const mongooseRouter = require('./routes/animal');
 
 app.use('/animal', mongooseRouter)
 
-app.use('*', (req,res) =>{
-    res.status(200).render('index')
-})
+// wildcard catch all 
+app.all("*", (req,res) => {
+    res.status(202).render('index')
+  });
 
  app.listen(PORT, () => { ;
 console.log(`Listening on ${PORT}`);
