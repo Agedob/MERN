@@ -10,17 +10,17 @@
 #container {
     display: grid;
     grid-template-columns: repeat(3,1fr);
-    /* grid-template-rows: ; */
-    /* row-gap: 1em;
-    column-gap: 1em; */
     grid-gap: 1em;
     align-items: center;
     padding: 0.25em;
-    /* height: 100vh; 100% of the view height */
 }
 
 #header_row{
     /* grid-column-start: 1; 
     grid-column-end: -1; end of the column */
     grid-column: 1 / -1; /* short hand for above code */
+}
+
+#form_wrap{
+    display: flex;
 }
