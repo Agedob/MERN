@@ -16,4 +16,5 @@ Remember these routes are just examples, avoid using mongooses for your dashboar
 
 1. async await
 2. REST
-3. ???
+3. https://www.youtube.com/watch?v=fgTGADljAeg&t=963s
+    ^ mostly this 
