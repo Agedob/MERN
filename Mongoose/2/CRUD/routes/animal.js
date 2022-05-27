@@ -15,7 +15,7 @@ router.get('/', async (req,res) =>{
 
 // GET '/mongooses/:id' Displays information about one mongoose.
 router.get('/:id', getAnimal, (req,res) => {
-    res.send(res.somethingelse.name)
+    res.send(res.somethingelse)
 });
 
 // GET '/mongooses/new' Displays a form for making a new mongoose.
@@ -41,18 +41,23 @@ router.post('/new', async (req,res) => {
 });
 
 // GET '/mongooses/edit/:id' Should show a form to edit an existing mongoose.
-router.patch( 'edit/:id', (req,res) => {
+router.patch( 'edit/:id', getAnimal, (req,res) => {
 
 });
 
 // POST '/mongooses/:id' Should be the action attribute for the form in the above route (GET '/mongooses/edit/:id').
-router.post(':id', (req,res) => {
+router.post(':id', getAnimal, (req,res) => {
 
 });
 
 // POST '/mongooses/destroy/:id' Should delete the mongoose from the database by ID.
-router.post('destroy/:id', (req,res) => {
-
+router.delete('/destroy/:id', getAnimal, async (req,res) => {
+    try {
+        await res.somethingelse.remove()
+        res.json({message: "Deleted animal"})
+    } catch (err) {
+        res.status(500).json({message:err.message})
+    }
 });
 
 // "middle-ware" find by id 
@@ -67,7 +72,9 @@ async function getAnimal(req, res, next) {
         return res.status(500).json({message:err.message});
     }
     console.log(animalbyid);
-    res.somethingelse = animalbyid
+    
+    // creating your own res.variable 
+    res.somethingelse = animalbyid;
     next()
 }
 
