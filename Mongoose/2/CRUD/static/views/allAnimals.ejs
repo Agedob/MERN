@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+    <title> CRUD Mongoose </title>
+    <link rel='stylesheet' type='text/css' href='css/styles.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+    <script src='js/index.js'></script>
+    </head>
+<body>
+    <div id='container'>
+
+        <% for (var x in DATA) { %>
+            <div class="animal_div_wraper" id=<%= DATA[x].id %>>
+            <h3>Name: <%= DATA[x].name %></h3>
+            <h4>Age: <%= DATA[x].age %></h4>
+            </div>
+        <% } %>
+
+    </div>
+
+</body>
+</html>

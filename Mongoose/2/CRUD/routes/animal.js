@@ -7,7 +7,7 @@ const Animal = require('../models/index');
 router.get('/', async (req,res) =>{
    try {
     const allAnimals = await Animal.find();
-    res.json(allAnimals)
+    res.status(418).render('allAnimals', {DATA: allAnimals})
    } catch (errorz) {
     res.status(500).json({ message: err.errorz});
    }
