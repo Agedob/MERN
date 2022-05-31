@@ -41,17 +41,17 @@ router.post("/new", async (req, res) => {
 });
 
 // GET '/mongooses/edit/:id' Should show a form to edit an existing mongoose.
-router.patch("/edit/:id", getAnimal, async (req, res) => {
+router.post("/edit/:id", getAnimal, async (req, res) => {
    if (req.body.name != null) {
       res.somethingelse.name = req.body.name;
    }
    if (req.body.age != null) {
       res.somethingelse.age = req.body.age;
    }
-   console.log(res.somethingelse);
+   console.log("here");
    try {
       const updatedAniaml = await res.somethingelse.save();
-      res.status(418).json(updatedAniaml);
+      res.status(418).redirect("/animal");
    } catch (err) {
       res.status(400).json({ message: err.message });
    }
@@ -61,10 +61,10 @@ router.patch("/edit/:id", getAnimal, async (req, res) => {
 router.post(":id", getAnimal, (req, res) => {});
 
 // POST '/mongooses/destroy/:id' Should delete the mongoose from the database by ID.
-router.delete("/destroy/:id", getAnimal, async (req, res) => {
+router.post("/destroy/:id", getAnimal, async (req, res) => {
    try {
       await res.somethingelse.remove();
-      res.status(418).json({ message: "Deleted animal" });
+      res.status(418).redirect("/animal");
    } catch (err) {
       res.status(500).json({ message: err.message });
    }
@@ -81,8 +81,6 @@ async function getAnimal(req, res, next) {
    } catch (err) {
       return res.status(500).json({ message: err.message });
    }
-   // console.log(animalbyid);
-
    // creating your own res.variable
    res.somethingelse = animalbyid;
    next();
