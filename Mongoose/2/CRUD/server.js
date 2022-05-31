@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 require('dotenv').config();
 const mongoose = require('mongoose');
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const PORT = process.env.PORT;
 const PRIVATE_KEY = process.env.PRIVATE_KEY
@@ -17,7 +19,7 @@ app.use('/animal', mongooseRouter)
 
 // wildcard catch all 
 app.all("*", (req,res) => {
-    res.status(202).render('index')
+    res.status(200).render('index')
   });
 
  app.listen(PORT, () => { ;

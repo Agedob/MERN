@@ -24,3 +24,12 @@
 #form_wrap{
     display: flex;
 }
+
+.animal_wraper{
+    text-decoration: none;
+    text-align: center;
+}
+
+.animal_wraper:hover{
+    /* background-color: #FFF; */
+}

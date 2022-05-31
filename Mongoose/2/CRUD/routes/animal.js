@@ -7,15 +7,18 @@ const Animal = require('../models/index');
 router.get('/', async (req,res) =>{
    try {
     const allAnimals = await Animal.find();
-    res.status(418).render('allAnimals', {DATA: allAnimals})
+    res.status(201).render('allAnimals', {DATA: allAnimals})
    } catch (errorz) {
-    res.status(500).json({ message: err.errorz});
+    res.status(500).json({ message: errorz.message});
    }
 });
 
 // GET '/mongooses/:id' Displays information about one mongoose.
-router.get('/:id', getAnimal, (req,res) => {
-    res.send(res.somethingelse)
+router.get('/:id', getAnimal,  (req,res) => {
+   
+        const animalData = res.somethingelse
+        res.status(202).render('individualAnimal')
+ 
 });
 
 // GET '/mongooses/new' Displays a form for making a new mongoose.
@@ -84,7 +87,7 @@ async function getAnimal(req, res, next) {
     } catch (err) {
         return res.status(500).json({message:err.message});
     }
-    console.log(animalbyid);
+    // console.log(animalbyid);
 
     // creating your own res.variable 
     res.somethingelse = animalbyid;
