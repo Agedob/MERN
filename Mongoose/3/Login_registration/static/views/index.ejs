@@ -14,6 +14,35 @@
          <div id="header_row">
             <h1>Hello World</h1>
          </div>
+         <form id="reg_form" action="/" method="post">
+            <label for="name">First Name: </label>
+            <input name="name" type="text" /> <br />
+            <label for="last_name">Last Name: </label>
+            <input type="text" name="last_name" /> <br />
+            <label for="email">Email: </label>
+            <input name="email" type="email" /> <br />
+            <label for="password">Password: </label>
+            <input type="password" name="password" /> <br />
+            <label for="birthday">Birthday: </label>
+            <input type="text" name="birthday" /> <br />
+            <button type="submit">REGISTER</button>
+         </form>
+         <form id="login_form" accept="/login" method="post">
+            <label for="name"
+               >Name: <input type="text" name="name" /> <br />
+            </label>
+            <label for="password"
+               >Password: <input type="password" name="password" /></label
+            ><br />
+            <button type="submit">LOGIN</button>
+         </form>
+         <div id="all_names">
+            <ul>
+               <% for (var x in DATA) { %>
+               <li><%= DATA[x] %></li>
+               <% } %>
+            </ul>
+         </div>
       </div>
    </body>
 </html>
