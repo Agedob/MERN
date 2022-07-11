@@ -14,7 +14,8 @@
          <div id="header_row">
             <h1>Hello World</h1>
          </div>
-         <form id="reg_form" action="/" method="post">
+
+         <form id="reg_form" action="/new" method="post">
             <label for="name">First Name: </label>
             <input name="name" type="text" /> <br />
             <label for="last_name">Last Name: </label>
@@ -27,7 +28,8 @@
             <input type="text" name="birthday" /> <br />
             <button type="submit">REGISTER</button>
          </form>
-         <form id="login_form" accept="/login" method="post">
+
+         <form id="login_form" action="/login" method="post">
             <label for="name"
                >Name: <input type="text" name="name" /> <br />
             </label>
@@ -36,6 +38,7 @@
             ><br />
             <button type="submit">LOGIN</button>
          </form>
+
          <div id="all_names">
             <ul>
                <% for (var x in DATA) { %>

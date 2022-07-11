@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const bcrypt = require("bcrypt");
 
-var backend = [];
+var backend = [0, 1];
 // mongoose.connect(PRIVATE_KEY, { useNewUrlParser: true });
 app.use(express.static(__dirname + "/static"));
 app.use(express.json());
@@ -19,10 +19,10 @@ app.set("view engine", "ejs");
 
 const ROUTER = require("./routes/routes");
 
-app.use("/login", ROUTER);
+app.use("/logged", ROUTER);
 
 app.get("*", (req, res) => {
-   res.render("index", { DATA: "hello world" });
+   res.render("index", { DATA: backend });
 });
 
 app.listen(PORT, () => {
