@@ -1,0 +1,25 @@
+GET http://localhost:7173
+
+
+###
+
+
+GET http://localhost:7173/logged/62cdb827473d14df79f01dcb
+
+
+### 
+
+
+POST http://localhost:7173/logged/
+content-type: application/json
+
+{
+    "first_name": "third",
+    "last_name": "last",
+    "email": "email@gmail.com",
+    "password": "password",
+    "birthday": "01/01/1995"
+}
+
+###
+

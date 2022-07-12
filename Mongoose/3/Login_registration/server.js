@@ -8,6 +8,8 @@ const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 
+const User = require("./models/models");
+
 const bcrypt = require("bcrypt");
 
 mongoose.connect(PRIVATE_KEY, { useNewUrlParser: true });
@@ -20,8 +22,14 @@ const ROUTER = require("./routes/routes");
 
 app.use("/logged", ROUTER);
 
-app.get("*", (req, res) => {
-   res.render("index", { DATA: [0, 1, 2, 3, "test"] });
+// catch all for index page also get all from server
+app.get("*", async (req, res) => {
+   try {
+      const all = await User.find();
+      res.status(201).render("index", { DATA: all });
+   } catch (err) {
+      res.status(500).json({ message: err.message });
+   }
 });
 
 app.listen(PORT, () => {

@@ -1,7 +1,0 @@
-GET http://localhost:7173
-
-
-###
-
-
-GET http://localhost:7173/logged/123
