@@ -10,8 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const bcrypt = require("bcrypt");
 
-var backend = [0, 1];
-// mongoose.connect(PRIVATE_KEY, { useNewUrlParser: true });
+mongoose.connect(PRIVATE_KEY, { useNewUrlParser: true });
 app.use(express.static(__dirname + "/static"));
 app.use(express.json());
 app.set("views", __dirname + "/static/views");
@@ -22,7 +21,7 @@ const ROUTER = require("./routes/routes");
 app.use("/logged", ROUTER);
 
 app.get("*", (req, res) => {
-   res.render("index", { DATA: backend });
+   res.render("index", { DATA: [0, 1, 2, 3, "test"] });
 });
 
 app.listen(PORT, () => {
