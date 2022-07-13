@@ -8,7 +8,7 @@ router.get("/:id", getUser, (req, res) => {
    res.status(200).render("login", { DATA: res.userbyid });
 });
 
-// POST '/logged/'
+// POST '/logged/' new user
 router.post("/", async (req, res) => {
    const user = new User({
       first_name: req.body.first_name,
@@ -46,3 +46,16 @@ async function getUser(req, res, next) {
    next();
 }
 module.exports = router;
+
+// bcrypt async
+// async function checkUser(username, password) {
+//    //... fetch user from a db etc.
+
+//    const match = await bcrypt.compare(password, user.passwordHash);
+
+//    if(match) {
+//        //login
+//    }
+
+//    //...
+// }
