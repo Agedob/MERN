@@ -8,6 +8,7 @@ const bcrypt = require("bcrypt");
 const User = require("./models/models");
 const bodyParser = require("body-parser");
 const session = require("express-session");
+const MongoStore = require("connect-mongo");
 
 // setting up the cookie
 app.set("trust proxy", 1);
@@ -16,12 +17,14 @@ app.use(
       secret: process.env.SECRET,
       resave: false,
       saveUninitialized: true,
+      store: MongoStore.create({
+         mongoUrl: process.env.PRIVATE_KEY,
+      }),
       cookie: { secure: true, maxAge: 360000 },
    })
 );
 
 mongoose.connect(PRIVATE_KEY, { useNewUrlParser: true });
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/static"));
 app.use(express.json());
