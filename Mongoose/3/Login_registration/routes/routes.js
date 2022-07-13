@@ -2,6 +2,21 @@ const { render } = require("ejs");
 const express = require("express");
 const router = express.Router();
 const User = require("../models/models");
+const bcrypt = require("bcrypt");
+
+// '/logged/login' check for user pw and add to session if true
+// bcrypt async
+
+async function checkUser(user_email, password) {
+   const user = User.findOne({ email: user_email });
+
+   const match = await bcrypt.compare(password, user.password);
+
+   if (match) {
+      console.log(user);
+   }
+   console.log("fail");
+}
 
 // '/logged/id'  turn into async for id's data
 router.get("/:id", getUser, (req, res) => {
@@ -14,8 +29,7 @@ router.post("/", async (req, res) => {
       first_name: req.body.first_name,
       last_name: req.body.last_name,
       email: req.body.email,
-      password: req.body.password,
-      // placeholder until bycript
+      password: bcrypt.hashSync(req.body.password, 13),
       birthday: req.body.birthday,
    });
 
@@ -45,17 +59,5 @@ async function getUser(req, res, next) {
    res.userbyid = userbyid;
    next();
 }
+
 module.exports = router;
-
-// bcrypt async
-// async function checkUser(username, password) {
-//    //... fetch user from a db etc.
-
-//    const match = await bcrypt.compare(password, user.passwordHash);
-
-//    if(match) {
-//        //login
-//    }
-
-//    //...
-// }
