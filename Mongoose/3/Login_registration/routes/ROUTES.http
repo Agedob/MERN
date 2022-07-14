@@ -14,9 +14,9 @@ POST http://localhost:7173/logged/
 content-type: application/json
 
 {
-    "first_name": "number 4",
+    "first_name": "number 6",
     "last_name": "last",
-    "email": "email@gmail.com",
+    "email": "abc@gmail.com",
     "password": "password",
     "birthday": "01/01/1995"
 }

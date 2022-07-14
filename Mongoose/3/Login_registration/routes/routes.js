@@ -7,16 +7,35 @@ const bcrypt = require("bcrypt");
 // '/logged/login' check for user pw and add to session if true
 // bcrypt async
 
-async function checkUser(user_email, password) {
-   const user = User.findOne({ email: user_email });
+// async function checkUser(user_email, password) {
+//    const user = User.findOne({ email: user_email });
 
-   const match = await bcrypt.compare(password, user.password);
+//    const match = await bcrypt.compare(password, user.password);
 
-   if (match) {
-      console.log(user);
-   }
-   console.log("fail");
-}
+//    if (match) {
+//       console.log(user);
+//    }
+//    console.log("fail");
+// // }
+
+// function checkUser(user_email, password) {
+//    const user = User.find({ email: user_email });
+//    console.log(" ----> ", user.id);
+//    if (bcrypt.compareSync(password, "13", user.password)) {
+//       console.log(user.id);
+//    } else {
+//       console.log("failed");
+//    }
+// }
+
+// bcrypt.genSalt(13, function (err, salt) {
+//    bcrypt.hash(req.body.password, salt, function (err, hash) {
+//       if (err) {
+//          throw err;
+//       }
+//       // console.log(hash);
+//    });
+// });
 
 // '/logged/id'  turn into async for id's data
 router.get("/:id", getUser, (req, res) => {
@@ -36,7 +55,7 @@ router.post("/", async (req, res) => {
    console.log(user);
 
    try {
-      const newAnimal = await user.save();
+      const newUser = await user.save();
       res.redirect("/logged/" + user.id);
    } catch (err) {
       res.status(400).json({ message: err.message });
