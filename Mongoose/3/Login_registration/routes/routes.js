@@ -44,17 +44,15 @@ router.get("/:id", getUser, (req, res) => {
 
 // POST '/logged/' new user
 router.post("/", async (req, res) => {
-   const user = new User({
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
-      email: req.body.email,
-      password: bcrypt.hashSync(req.body.password, 13),
-      birthday: req.body.birthday,
-   });
-
-   console.log(user);
-
    try {
+      const user = new User({
+         first_name: req.body.first_name,
+         last_name: req.body.last_name,
+         email: req.body.email,
+         password: bcrypt.hashSync(req.body.password, 10),
+         birthday: req.body.birthday,
+      });
+      console.log(user);
       const newUser = await user.save();
       res.redirect("/logged/" + user.id);
    } catch (err) {
