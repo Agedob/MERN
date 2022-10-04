@@ -10,6 +10,7 @@ const bodyParser = require("body-parser");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const ROUTER = require("./routes/routes");
+const { $where } = require("./models/models");
 mongoose.connect(PRIVATE_KEY, { useNewUrlParser: true });
 
 // setting up the cookie
@@ -44,6 +45,10 @@ app.get("*", async (req, res) => {
    }
 });
 
-app.listen(PORT, () => {
-   console.log(`Listening on ${PORT}`);
+app.listen(PORT || 5000, () => {
+   if (PORT) {
+      console.log(`Listening on ${PORT}`);
+   } else {
+      console.log(" Listening on 5000.");
+   }
 });
