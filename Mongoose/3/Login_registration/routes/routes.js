@@ -60,6 +60,14 @@ router.post("/", async (req, res) => {
    }
 });
 
+// POST '/logged/login' Logging in exsisting user
+router.post("/login", async (req, res) => {
+   try {
+      console.log("here");
+      res.redirect("/");
+   } catch (err) {}
+});
+
 // get by id function
 async function getUser(req, res, next) {
    let userbyid;
