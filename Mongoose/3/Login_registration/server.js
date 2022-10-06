@@ -35,11 +35,25 @@ app.set("view engine", "ejs");
 app.use("/logged", ROUTER);
 
 // catch all for index page also get all from server
-app.get("*", async (req, res) => {
+app.get("/", async (req, res) => {
    try {
       const all = await User.find();
       // console.log(req.session);
       res.status(201).render("index", { DATA: all });
+   } catch (err) {
+      res.status(500).json({ message: err.message });
+   }
+});
+
+app.get("*", (req, res) => {
+   res.redirect("/");
+});
+
+app.post("*", async (req, res) => {
+   try {
+      const all = await User.find();
+      // console.log(req.session);
+      res.redirect("/");
    } catch (err) {
       res.status(500).json({ message: err.message });
    }

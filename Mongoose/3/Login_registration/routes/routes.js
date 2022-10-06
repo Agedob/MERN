@@ -39,6 +39,14 @@ router.post("/login", async (req, res) => {
    }
 });
 
+router.get("*", (req, res) => {
+   res.redirect("/");
+});
+
+router.post("*", (req, res) => {
+   res.redirect("/");
+});
+
 /////////////////////////////////////////////////////////////////////
 
 // get by id function
@@ -46,10 +54,8 @@ async function getUser(req, res, next) {
    let userbyid;
    try {
       userbyid = await User.findById(req.params.id);
-      if (userbyid == null) {
-         return res
-            .status(404)
-            .json({ message: "User could not be found. Does not exsist." });
+      if (!userbyid) {
+         return res.redirect("/");
       }
    } catch (err) {
       return res.status(500).json({ message: err.message });
@@ -61,30 +67,17 @@ async function getUser(req, res, next) {
 // check user function
 async function checkUser(req, res) {
    let testUser;
-   try {
-      testUser = await User.findOne({ email: req.body.email });
-      // console.log(testUser);
-      if (testUser) {
-         const match = await bcrypt.compare(
-            req.body.password,
-            testUser.password
-         );
-         // console.log(match);
-         if (!match) {
-            return false;
-         }
-         res.userID = testUser.id;
-         return true;
-      }
-   } catch (err) {
-      console.log(err);
-      return false;
-   }
-   // res.testUser = testUser;
-}
+   testUser = await User.findOne({ email: req.body.email });
 
-// find user by email throw err
-// test for pw || err
-//
+   if (testUser) {
+      const match = await bcrypt.compare(req.body.password, testUser.password);
+
+      if (!match) {
+         return false;
+      }
+      res.userID = testUser.id;
+      return true;
+   }
+}
 
 module.exports = router;
