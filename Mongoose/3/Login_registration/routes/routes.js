@@ -30,10 +30,8 @@ router.post("/", async (req, res) => {
 // POST '/logged/login' Logging in exsisting user
 router.post("/login", async (req, res) => {
    try {
-      console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-      checkUser(req.body.email, req.body.password);
-      console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-      res.redirect("/");
+      await checkUser(req, res);
+      return res.redirect("/");
    } catch (err) {
       return res.status(500).json({ message: err.message });
    }
@@ -59,19 +57,19 @@ async function getUser(req, res, next) {
 }
 
 // check user function
-async function checkUser(inputEmail, inputPassword) {
+async function checkUser(req, res) {
    let testUser;
    try {
-      testUser = await User.findOne({ email: "test@test.com" });
+      testUser = await User.findOne({ email: req.body.email });
       console.log(testUser);
-      // if (testUser == null) {
-      //    return res
-      //       .status(404)
-      //       .json({ message: "User could not be found. Does not exsist." });
-      // }
+      if (testUser == null) {
+         return res
+            .status(404)
+            .json({ message: "User could not be found. Does not exsist." });
+      }
    } catch (err) {
       console.error(err);
-      // return res.status(500).json({ message: err.message });
+      return res.status(500).json({ message: err.message });
    }
    // res.testUser = testUser;
 }
