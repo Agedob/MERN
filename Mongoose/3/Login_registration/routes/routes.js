@@ -4,39 +4,6 @@ const router = express.Router();
 const User = require("../models/models");
 const bcrypt = require("bcrypt");
 
-// '/logged/login' check for user pw and add to session if true
-// bcrypt async
-
-// async function checkUser(user_email, password) {
-//    const user = User.findOne({ email: user_email });
-
-//    const match = await bcrypt.compare(password, user.password);
-
-//    if (match) {
-//       console.log(user);
-//    }
-//    console.log("fail");
-// // }
-
-// function checkUser(user_email, password) {
-//    const user = User.find({ email: user_email });
-//    console.log(" ----> ", user.id);
-//    if (bcrypt.compareSync(password, "13", user.password)) {
-//       console.log(user.id);
-//    } else {
-//       console.log("failed");
-//    }
-// }
-
-// bcrypt.genSalt(13, function (err, salt) {
-//    bcrypt.hash(req.body.password, salt, function (err, hash) {
-//       if (err) {
-//          throw err;
-//       }
-//       // console.log(hash);
-//    });
-// });
-
 // '/logged/id'  turn into async for id's data
 router.get("/:id", getUser, (req, res) => {
    res.status(200).render("login", { DATA: res.userbyid });
@@ -63,10 +30,14 @@ router.post("/", async (req, res) => {
 // POST '/logged/login' Logging in exsisting user
 router.post("/login", async (req, res) => {
    try {
-      console.log("here");
+      // console.log("here");
       res.redirect("/");
-   } catch (err) {}
+   } catch (err) {
+      return res.status(500).json({ message: err.message });
+   }
 });
+
+/////////////////////////////////////////////////////////////////////
 
 // get by id function
 async function getUser(req, res, next) {
@@ -84,5 +55,24 @@ async function getUser(req, res, next) {
    res.userbyid = userbyid;
    next();
 }
+
+// check user function
+async function checkUser(inputEmail, inputPassword, next) {
+   const testUser = User.findOne({ email: inputEmail });
+   console.log(testUser);
+   // if (testUser) {
+   //    const match = await bcrypt.compare(password, user.password);
+   //    if (match) {
+   //       console.log("match");
+   //       return;
+   //    }
+   //    console.log("failed");
+   // }
+   // console.log("wrong email.");
+   next();
+}
+// find user by email throw err
+// test for pw || err
+//
 
 module.exports = router;
