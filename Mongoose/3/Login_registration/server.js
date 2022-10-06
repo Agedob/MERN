@@ -38,7 +38,7 @@ app.use("/logged", ROUTER);
 app.get("*", async (req, res) => {
    try {
       const all = await User.find();
-      console.log(req.session);
+      // console.log(req.session);
       res.status(201).render("index", { DATA: all });
    } catch (err) {
       res.status(500).json({ message: err.message });

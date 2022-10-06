@@ -30,7 +30,9 @@ router.post("/", async (req, res) => {
 // POST '/logged/login' Logging in exsisting user
 router.post("/login", async (req, res) => {
    try {
-      // console.log("here");
+      console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+      checkUser(req.body.email, req.body.password);
+      console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
       res.redirect("/");
    } catch (err) {
       return res.status(500).json({ message: err.message });
@@ -57,20 +59,23 @@ async function getUser(req, res, next) {
 }
 
 // check user function
-async function checkUser(inputEmail, inputPassword, next) {
-   const testUser = User.findOne({ email: inputEmail });
-   console.log(testUser);
-   // if (testUser) {
-   //    const match = await bcrypt.compare(password, user.password);
-   //    if (match) {
-   //       console.log("match");
-   //       return;
-   //    }
-   //    console.log("failed");
-   // }
-   // console.log("wrong email.");
-   next();
+async function checkUser(inputEmail, inputPassword) {
+   let testUser;
+   try {
+      testUser = await User.findOne({ email: "test@test.com" });
+      console.log(testUser);
+      // if (testUser == null) {
+      //    return res
+      //       .status(404)
+      //       .json({ message: "User could not be found. Does not exsist." });
+      // }
+   } catch (err) {
+      console.error(err);
+      // return res.status(500).json({ message: err.message });
+   }
+   // res.testUser = testUser;
 }
+
 // find user by email throw err
 // test for pw || err
 //
