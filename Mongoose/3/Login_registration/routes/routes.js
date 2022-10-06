@@ -30,7 +30,9 @@ router.post("/", async (req, res) => {
 // POST '/logged/login' Logging in exsisting user
 router.post("/login", async (req, res) => {
    try {
-      await checkUser(req, res);
+      if (await checkUser(req, res)) {
+         return res.redirect("/logged/" + res.userID);
+      }
       return res.redirect("/");
    } catch (err) {
       return res.status(500).json({ message: err.message });
@@ -61,7 +63,7 @@ async function checkUser(req, res) {
    let testUser;
    try {
       testUser = await User.findOne({ email: req.body.email });
-      console.log(testUser);
+      // console.log(testUser);
       if (testUser) {
          const match = await bcrypt.compare(
             req.body.password,
@@ -69,11 +71,14 @@ async function checkUser(req, res) {
          );
          // console.log(match);
          if (!match) {
+            return false;
          }
+         res.userID = testUser.id;
+         return true;
       }
    } catch (err) {
-      console.error(err);
-      return res.status(500).json({ message: err.message });
+      console.log(err);
+      return false;
    }
    // res.testUser = testUser;
 }
