@@ -62,10 +62,14 @@ async function checkUser(req, res) {
    try {
       testUser = await User.findOne({ email: req.body.email });
       console.log(testUser);
-      if (testUser == null) {
-         return res
-            .status(404)
-            .json({ message: "User could not be found. Does not exsist." });
+      if (testUser) {
+         const match = await bcrypt.compare(
+            req.body.password,
+            testUser.password
+         );
+         // console.log(match);
+         if (!match) {
+         }
       }
    } catch (err) {
       console.error(err);
