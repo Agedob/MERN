@@ -12,9 +12,12 @@
    <body>
       <div id="container">
          <h1 id="header_row">Hello <%= DATA.first_name %></h1>
+
          <a href="/signout/<%= DATA.id %>"> Sign Out </a>
+
          <a href="/"> Home </a>
-         <form id="reg_form" action="/update" method="post">
+
+         <form id="reg_form" action="/logged/update" method="post">
             <label for="name">First Name: </label>
             <input name="first_name" type="text" /> <br />
             <label for="last_name">Last Name: </label>

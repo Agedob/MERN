@@ -39,12 +39,12 @@ router.post("/login", async (req, res) => {
    }
 });
 
-router.get("*", (req, res) => {
-   res.redirect("/");
-});
-
-router.post("*", (req, res) => {
-   res.redirect("/");
+// POST '/update' Update this user
+router.post("/update", async (req, res) => {
+   try {
+      await console.log(req.body);
+      res.redirect("/");
+   } catch (err) {}
 });
 
 /////////////////////////////////////////////////////////////////////
@@ -79,5 +79,13 @@ async function checkUser(req, res) {
       return true;
    }
 }
+
+router.get("*", (req, res) => {
+   res.redirect("/");
+});
+
+router.post("*", (req, res) => {
+   res.redirect("/");
+});
 
 module.exports = router;

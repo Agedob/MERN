@@ -4,11 +4,16 @@ GET http://localhost:7173
 ###
 
 
-GET http://localhost:7173/logged/62cdb827473d14df79f01dcb
+GET http://localhost:7173/logged/633cdbbcadc4e86e3f33a54a
 
 
 ### 
 
+
+GET http://localhost:7173/logged/633cd193adc4e86e3f33a544
+
+
+###
 
 POST http://localhost:7173/logged/
 content-type: application/json
@@ -23,3 +28,29 @@ content-type: application/json
 
 ###
 
+POST http://localhost:7173/logged/login
+Content-Type: application/json
+
+{
+    "email": "test@test.com",
+    "password": "test"
+}
+
+###
+
+
+POST http://localhost:7173/logged/update
+Content-Type: application/json
+
+
+{
+    "first_name": "number 5",
+    "last_name": "last",
+    "email": "abc@gmail.com",
+    "password": "password",
+    "birthday": "01/01/1995"
+}
+
+
+
+###
