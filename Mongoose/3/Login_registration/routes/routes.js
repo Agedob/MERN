@@ -46,7 +46,8 @@ router.post("/login", async (req, res) => {
 // updateOne
 router.post("/update", async (req, res) => {
    try {
-      console.log(req.session.userID);
+      // console.log(req.body);
+      updateUserFromLogin(req.body.userID, req.body.first_name);
       res.redirect("/");
    } catch (err) {}
 });
@@ -85,10 +86,18 @@ async function checkUser(req, res) {
 }
 
 // update one user by id from session
-async function updateUserFromLogin(req, res) {
+async function updateUserFromLogin(userID, edit) {
    try {
-      const userFromSes = await User.findById(req.session.userID);
-      // console.log(userFromSes);
+      const userFromSes = await User.updateOne(
+         { _id: userID },
+         { first_name: edit }
+      );
+      console.log(userFromSes);
+      // console.log(userFromSes.matchedCount);
+      // userFromSes.modifiedCount;
+      // userFromSes.acknowledged;
+      // userFromSes.upsertedCount;
+      // userFromSes.upsertedId;
    } catch (err) {
       return res.status(500).json({ message: err.message });
    }

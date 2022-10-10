@@ -54,3 +54,15 @@ Content-Type: application/json
 
 
 ###
+
+
+POST http://localhost:7173/logged/update
+Content-Type: application/json
+
+{
+    "userID": "633cd193adc4e86e3f33a544",
+    "first_name" : "number 6"
+}
+
+
+###
