@@ -93,13 +93,8 @@ async function updateUserFromLogin(userID, edit) {
          { first_name: edit }
       );
       console.log(userFromSes);
-      // console.log(userFromSes.matchedCount);
-      // userFromSes.modifiedCount;
-      // userFromSes.acknowledged;
-      // userFromSes.upsertedCount;
-      // userFromSes.upsertedId;
    } catch (err) {
-      return res.status(500).json({ message: err.message });
+      return false;
    }
 }
 
