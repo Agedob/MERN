@@ -52,6 +52,17 @@ router.post("/update", async (req, res) => {
    } catch (err) {}
 });
 
+// POST '/logged/delete' Delete this user
+// deleteOne()
+router.post("/delete", async (req, res) => {
+   try {
+      const notMePlease = await User.deleteOne({ _id: req.body.userID });
+      console.log(notMePlease);
+      res.redirect("/");
+   } catch (err) {
+      return res.status(500).json({ message: err.message });
+   }
+});
 /////////////////////////////////////////////////////////////////////
 
 // get by id function

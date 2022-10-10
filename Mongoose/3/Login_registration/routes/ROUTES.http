@@ -21,7 +21,7 @@ content-type: application/json
 {
     "first_name": "number 6",
     "last_name": "last",
-    "email": "abc@gmail.com",
+    "email": "abc4@gmail.com",
     "password": "password",
     "birthday": "01/01/1995"
 }
@@ -61,8 +61,18 @@ Content-Type: application/json
 
 {
     "userID": "633cd193adc4e86e3f33a544",
-    "first_name" : "number 6"
+    "first_name" : "number 1"
 }
 
+
+###
+
+
+POST http://localhost:7173/logged/delete
+Content-Type: application/json
+
+{
+    "userID": "6344472cb0f6a3e491544d5b"
+}
 
 ###
