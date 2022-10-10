@@ -23,6 +23,7 @@ const loginSchema = new mongoose.Schema({
       required: true,
    },
    date: {
+      imputable: true,
       type: Date,
       required: true,
       default: Date.now,

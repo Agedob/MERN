@@ -10,14 +10,22 @@ last_name
 password
 birthday
 
-Each registration field should have at least one back-end validation on it!
+Each registration field should have at least one back-end validation on it! ()
 
-Emails should be unique and valid emails.
+Emails should be unique and valid emails. ()
 
-How are we going to deal with uniqueness errors?
+How are we going to deal with uniqueness errors? ()
 
-The login form should just have fields for password and email.
+The login form should just have fields for password and email. ()
 
-For this assignment, we recommend that you write all your own code to check for possible errors.
+For this assignment, we recommend that you write all your own code to check for possible errors. ()
 
-After you have successfully checked for errors with your own code and passed back error messages to the user, implement mongoose validations.
+After you have successfully checked for errors with your own code and passed back error messages to the user, implement mongoose validations. ()
+
+find user by email throw err (x)
+test for pw || err (x)
+figure out session ()
+set up update for logged in users (x)
+set up delete for logged in users (x)
+
+change updated at to findbyid and save ()
