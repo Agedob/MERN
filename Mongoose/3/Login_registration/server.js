@@ -23,7 +23,7 @@ app.use(
       store: MongoStore.create({
          mongoUrl: process.env.PRIVATE_KEY,
       }),
-      cookie: { secure: true, maxAge: 120000 },
+      cookie: { secure: true, maxAge: 12000 },
    })
 );
 
@@ -51,8 +51,6 @@ app.get("*", (req, res) => {
 
 app.post("*", async (req, res) => {
    try {
-      const all = await User.find();
-      // console.log(req.session);
       res.redirect("/");
    } catch (err) {
       res.status(500).json({ message: err.message });

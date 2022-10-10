@@ -4,7 +4,7 @@ const router = express.Router();
 const User = require("../models/models");
 const bcrypt = require("bcrypt");
 
-// '/logged/id'  turn into async for id's data
+// GET '/logged/id'  turn into async for id's data
 router.get("/:id", getUser, (req, res) => {
    res.status(200).render("login", { DATA: res.userbyid });
 });
@@ -31,6 +31,9 @@ router.post("/", async (req, res) => {
 router.post("/login", async (req, res) => {
    try {
       if (await checkUser(req, res)) {
+         req.session.userID = res.userID;
+         console.log(req.sessionID);
+         console.log(req.session.userID);
          return res.redirect("/logged/" + res.userID);
       }
       return res.redirect("/");
@@ -40,9 +43,10 @@ router.post("/login", async (req, res) => {
 });
 
 // POST '/update' Update this user
+// updateOne
 router.post("/update", async (req, res) => {
    try {
-      await console.log(req.body);
+      console.log(req.session.userID);
       res.redirect("/");
    } catch (err) {}
 });
@@ -77,6 +81,16 @@ async function checkUser(req, res) {
       }
       res.userID = testUser.id;
       return true;
+   }
+}
+
+// update one user by id from session
+async function updateUserFromLogin(req, res) {
+   try {
+      const userFromSes = await User.findById(req.session.userID);
+      // console.log(userFromSes);
+   } catch (err) {
+      return res.status(500).json({ message: err.message });
    }
 }
 
