@@ -34,11 +34,10 @@ app.set("views", __dirname + "/static/views");
 app.set("view engine", "ejs");
 app.use("/logged", ROUTER);
 
-// catch all for index page also get all from server
+// catch all for index page also get all user data from server
 app.get("/", async (req, res) => {
    try {
       const all = await User.find();
-      // console.log(req.session);
       res.status(201).render("index", { DATA: all });
    } catch (err) {
       res.status(500).json({ message: err.message });
