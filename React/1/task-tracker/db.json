@@ -11,6 +11,18 @@
       "text": "Doc",
       "day": "Feb 3",
       "reminder": true
+    },
+    {
+      "text": "test task",
+      "day": "Monday",
+      "reminder": false,
+      "id": "m01MJw7"
+    },
+    {
+      "text": "Fri",
+      "day": "tests",
+      "reminder": true,
+      "id": "cq_va6R"
     }
   ]
 }
