@@ -10,12 +10,12 @@
       "id": "3",
       "text": "Doc",
       "day": "Feb 3",
-      "reminder": true
+      "reminder": false
     },
     {
       "text": "test task",
       "day": "Monday",
-      "reminder": false,
+      "reminder": true,
       "id": "m01MJw7"
     },
     {
