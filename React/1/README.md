@@ -14,4 +14,9 @@ can write js directly into jsx with {} ie const name = "something" ... <h1> hell
 
 when you send to deployment use (npm run build)
 --the BUILD folder is what you want
-code to run it on bassic http server ( serve -s build -p 8000) -->
+code to run it on bassic http server ( serve -s build -p 8000)
+npm start
+npm run server
+npm i json-server
+npm i
+-->

@@ -1,28 +1,22 @@
 {
   "tasks": [
     {
-      "id": "1",
-      "text": "Doc",
-      "day": "Feb 1",
-      "reminder": true
-    },
-    {
-      "id": "3",
-      "text": "Doc",
-      "day": "Feb 3",
-      "reminder": false
-    },
-    {
-      "text": "test task",
-      "day": "Monday",
+      "text": "train dog",
+      "day": "Thursday",
       "reminder": true,
-      "id": "m01MJw7"
+      "id": 1
     },
     {
-      "text": "Fri",
-      "day": "tests",
+      "text": "Gaming ",
+      "day": "Weekends",
+      "reminder": false,
+      "id": 2
+    },
+    {
+      "text": "Rock Climbing ",
+      "day": "Wednesday ",
       "reminder": true,
-      "id": "cq_va6R"
+      "id": 3
     }
   ]
 }
