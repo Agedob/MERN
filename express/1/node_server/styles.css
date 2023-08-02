@@ -4,6 +4,8 @@
     color: #FFF;
     vertical-align: top;
     border: 1px solid green;
+    text-align: center;
+    /* margin: 400px; */
 }
 #container {
     padding: 100px;
