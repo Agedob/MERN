@@ -13,16 +13,16 @@ router.get("/", async (req, res) => {
    }
 });
 
-// GET '/mongooses/:id' Displays information about one mongoose.
+// GET '/Animal/:id' Displays information about one Animal.
 router.get("/:id", getAnimal, (req, res) => {
    console.log(res.somethingelse);
    res.status(201).render("individualAnimal", { DATA: res.somethingelse });
 });
 
-// GET '/mongooses/new' Displays a form for making a new mongoose.
+// GET '/Animal/new' Displays a form for making a new Animal.
 router.get("/new", (req, res) => {});
 
-// POST '/mongooses' Should be the action attribute for the form in the above route (GET '/mongooses/new').
+// POST '/Animal' Should be the action attribute for the form in the above route (GET '/mongooses/new').
 router.post("/new", async (req, res) => {
    const animal = new Animal({
       name: req.body.name,
@@ -48,7 +48,6 @@ router.post("/edit/:id", getAnimal, async (req, res) => {
    if (req.body.age != null) {
       res.somethingelse.age = req.body.age;
    }
-   console.log("here");
    try {
       const updatedAniaml = await res.somethingelse.save();
       res.status(418).redirect("/animal");

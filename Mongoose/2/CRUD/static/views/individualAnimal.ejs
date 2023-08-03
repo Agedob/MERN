@@ -13,7 +13,7 @@
       <div id="container">
          <div id="update_form_wrap">
             <p>Update current animal</p>
-            <form action="/animal/edit/<%= DATA.id %>" method="PUT">
+            <form action="/animal/edit/<%= DATA.id %>" method="post">
                Name: <input type="text" name="name" /> Age:
                <input type="number" name="age" />
                <button type="submit">Click me!</button>

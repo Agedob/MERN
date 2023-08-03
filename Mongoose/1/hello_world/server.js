@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-
+mongoose.set('strictQuery', false);
 const mongo_connect_info = require("./mongoPass");
 mongoose.connect(mongo_connect_info, { useNewUrlParser: true });
 
@@ -38,7 +38,7 @@ app.get("/", (req, res) => {
 // send parsed info to the db and create a new user
 app.post("/users", function (req, res) {
    const user = new User();
-   user.name = req.body.name;
+   user.name = req.body.first_name;
    user.age = req.body.age;
    user
       .save()
