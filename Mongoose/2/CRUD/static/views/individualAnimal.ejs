@@ -13,6 +13,7 @@
       <div id="container">
          <div id="update_form_wrap">
             <p>Update current animal</p>
+            <span color="red"><%= message %> </span>
             <form action="/animal/edit/<%= DATA.id %>" method="post">
                Name: <input type="text" name="name" /> Age:
                <input type="number" name="age" />
@@ -30,6 +31,7 @@
                   Delete Animal <%= DATA.id %>
                </button>
             </form>
+            <a href="/">HOME</a>
          </div>
       </div>
    </body>

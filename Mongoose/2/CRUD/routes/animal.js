@@ -9,14 +9,15 @@ router.get("/", async (req, res) => {
       const allAnimals = await Animal.find();
       res.status(201).render("allAnimals", { DATA: allAnimals });
    } catch (errorz) {
+      console.log(errorz)
       res.status(500).json({ message: errorz.message });
    }
 });
 
 // GET '/Animal/:id' Displays information about one Animal.
 router.get("/:id", getAnimal, (req, res) => {
-   console.log(res.somethingelse);
-   res.status(201).render("individualAnimal", { DATA: res.somethingelse });
+   console.log("editing >>>>", res.somethingelse.name);
+   res.status(201).render("individualAnimal", { DATA: res.somethingelse, message : res.somethingelse.name });
 });
 
 // GET '/Animal/new' Displays a form for making a new Animal.
@@ -40,7 +41,7 @@ router.post("/new", async (req, res) => {
    }
 });
 
-// GET '/mongooses/edit/:id' Should show a form to edit an existing mongoose.
+// PUT(post update) '/mongooses/edit/:id' Should show a form to edit an existing mongoose.
 router.post("/edit/:id", getAnimal, async (req, res) => {
    if (req.body.name != null) {
       res.somethingelse.name = req.body.name;
@@ -52,7 +53,8 @@ router.post("/edit/:id", getAnimal, async (req, res) => {
       const updatedAniaml = await res.somethingelse.save();
       res.status(418).redirect("/animal");
    } catch (err) {
-      res.status(400).json({ message: err.message });
+      console.log(err.message)
+      res.status(400).redirect("/animal/" + res.somethingelse.id );
    }
 });
 
