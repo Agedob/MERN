@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const env = require("dotenv").config();
 const mongoose = require("mongoose");
+mongoose.set('strictQuery', false)
 const PORT = process.env.PORT;
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const bcrypt = require("bcrypt");
@@ -34,9 +35,9 @@ app.set("views", __dirname + "/static/views");
 app.set("view engine", "ejs");
 app.use("/logged", ROUTER);
 
-// catch all for index page also get all user data from server
+// get all user data from server || index page
 app.get("/", async (req, res) => {
-   try {
+    try {
       const all = await User.find();
       res.status(201).render("index", { DATA: all });
    } catch (err) {
@@ -44,10 +45,20 @@ app.get("/", async (req, res) => {
    }
 });
 
+// signout destroy session data 
+app.get("/signout/:id", async (req, res) => {
+   try {
+      console.log(req.sessionID);
+      res.redirect('/')
+   } catch (err) {
+      return res.status(500).json({ message: err.message});
+   }
+})
+
+// catch all
 app.get("*", (req, res) => {
    res.redirect("/");
 });
-
 app.post("*", async (req, res) => {
    try {
       res.redirect("/");

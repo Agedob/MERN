@@ -6,7 +6,7 @@ const bcrypt = require("bcrypt");
 
 // GET '/logged/id'  turn into async for id's data
 router.get("/:id", getUser, (req, res) => {
-   res.status(200).render("login", { DATA: res.userbyid });
+   res.status(200).render("login", { DATA: res.userbyid, SESS: req.session.views });
 });
 
 // POST '/logged/' new user
@@ -31,9 +31,13 @@ router.post("/", async (req, res) => {
 router.post("/login", async (req, res) => {
    try {
       if (await checkUser(req, res)) {
-         req.session.userID = res.userID;
-         console.log(req.sessionID);
-         console.log(req.session.userID);
+         req.session.userID = res.userID;  
+         if(req.session.views){
+            req.session.views++;
+            console.log('here');
+         } else {
+            req.session.views = 1
+         }
          return res.redirect("/logged/" + res.userID);
       }
       return res.redirect("/");
@@ -63,7 +67,9 @@ router.post("/delete", async (req, res) => {
       return res.status(500).json({ message: err.message });
    }
 });
+
 /////////////////////////////////////////////////////////////////////
+// middleware functions \/
 
 // get by id function
 async function getUser(req, res, next) {
@@ -109,11 +115,13 @@ async function updateUserFromLogin(userID, edit) {
    }
 }
 
+// catch all
 router.get("*", (req, res) => {
+   console.log('catch all get')
    res.redirect("/");
 });
-
 router.post("*", (req, res) => {
+   console.log('catch all post')
    res.redirect("/");
 });
 

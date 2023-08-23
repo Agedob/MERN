@@ -30,4 +30,4 @@ const loginSchema = new mongoose.Schema({
    },
 });
 
-module.exports = mongoose.model("Users", loginSchema);
+module.exports = mongoose.model("Test_Users", loginSchema);
