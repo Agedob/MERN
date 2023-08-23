@@ -4,9 +4,9 @@ const env = require("dotenv").config();
 const mongoose = require("mongoose");
 const PORT = process.env.PORT;
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
-mongoose.set('strictQuery', false);
 var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
+mongoose.set('strictQuery', false);
 
 mongoose.connect(PRIVATE_KEY, { useNewUrlParser: true });
 app.use(express.static(__dirname + "/static"));
@@ -15,10 +15,13 @@ app.set("views", __dirname + "/static/views");
 app.set("view engine", "ejs");
 
 app.get("*", (req, res) => {
-   console.log('here.')
    res.render("index");
 });
 
-app.listen(PORT, () => {
-   console.log(`Listening on ${PORT}`);
+app.listen(PORT || 5000, () => {
+if (PORT) {
+ console.log(`Listening on ${PORT}`);
+} else { 
+ console.log('listeing on 5000.'); 
+}
 });
