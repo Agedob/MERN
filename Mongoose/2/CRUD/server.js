@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 require("dotenv").config();
 const mongoose = require("mongoose");
-mongoose.set('strictQuery', false);
+mongoose.set("strictQuery", false);
 var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -20,9 +20,9 @@ app.use("/animal", mongooseRouter);
 
 // wildcard catch all
 app.all("*", (req, res) => {
-   res.status(200).render("index");
+  res.status(200).render("index");
 });
 
 app.listen(PORT, () => {
-   console.log(`Listening on ${PORT}`);
+  console.log(`Listening on ${PORT}`);
 });
