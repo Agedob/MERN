@@ -24,10 +24,17 @@ function App() {
     },
   ]);
 
+  // middleware
+
+  // Dealete Task
+  const deleteTask = (id) => {
+    console.log("Unalive", id);
+  };
+
   return (
     <div className="container">
       <Header title="Task Tracker" />
-      <Tasks Tasks_list={Tasks_list} />
+      <Tasks Tasks_list={Tasks_list} onDelete={deleteTask} />
       {/* <h1>Hello world</h1> */}
     </div>
   );
